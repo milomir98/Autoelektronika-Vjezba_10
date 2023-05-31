@@ -1,0 +1,73 @@
+
+--- Module:   module3.cpp (C++)
+    _
+    };
+test.h  14  Info 1712: default constructor not defined for class 'Array'
+    _
+    {
+test.h  17  Info 1790: Base class 'Array' has no non-destructor virtual
+    functions
+                     _
+	~NamedArray();
+test.h  22  Warning 1509: base class destructor for class 'Array' is not
+    virtual
+    _
+    };
+test.h  23  Info 1712: default constructor not defined for class 'NamedArray'
+                  _
+    size = upp-low+1;
+module3.cpp  5  Info 834: Operator '-' followed by operator '+' is confusing. 
+    Use parentheses.
+module3.cpp  5  Info 732: Loss of sign (assignment) (int to unsigned int)
+    _
+    }
+module3.cpp  8  Warning 1401: member 'Array::data' (line 8, file test.h) not
+    initialized by constructor
+test.h  8  Info 830: Location cited in prior message
+
+--- Module:   module4.cpp (C++)
+    _
+    };
+test.h  14  Info 1712: default constructor not defined for class 'Array'
+    _
+    {
+test.h  17  Info 1790: Base class 'Array' has no non-destructor virtual
+    functions
+                     _
+	~NamedArray();
+test.h  22  Warning 1509: base class destructor for class 'Array' is not
+    virtual
+    _
+    };
+test.h  23  Info 1712: default constructor not defined for class 'NamedArray'
+                 _
+    NamedArray na;
+module4.cpp  6  Error 1024: No function has same argument count as
+    'NamedArray::NamedArray(void)', 2 candidates found
+module4.cpp  6  Info 1703: Function 'NamedArray::NamedArray(int, int, const
+    char *)' arbitrarily selected.  Refer to Error 1024
+module4.cpp  6  Error 118: Too few arguments (0) for prototype
+    'NamedArray::NamedArray(int, int, const char *)'
+    _
+    }
+module4.cpp  7  Info 1788: Variable 'na' (line 6) (type 'NamedArray') is
+    referenced only by its constructor or destructor
+module4.cpp  6  Info 830: Location cited in prior message
+
+--- Global Wrap-up
+
+Warning 1512: destructor for base class 'Array' (line 5, file test.h, module
+    module4.cpp) is not virtual
+test.h  5  Info 830: Location cited in prior message
+Info 768: global struct member 'Array::data' (line 8, file test.h) not
+    referenced
+test.h  8  Info 830: Location cited in prior message
+Info 1714: Member function 'Array::Array(int, int)' (line 3, file module3.cpp)
+    not referenced
+module3.cpp  3  Info 830: Location cited in prior message
+Info 768: global struct member 'NamedArray::arrayName' (line 19, file test.h)
+    not referenced
+test.h  19  Info 830: Location cited in prior message
+Warning 1526: Member function 'NamedArray::NamedArray(int, int, const char *)'
+    (line 21, file test.h) not defined
+test.h  21  Info 830: Location cited in prior message

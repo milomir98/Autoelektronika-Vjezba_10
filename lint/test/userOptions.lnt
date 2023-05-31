@@ -1,0 +1,7 @@
+// Microchip MPLAB XC16 C, -si4 -sp4,
+// Standard lint options
+//-SL-3.3.16: how-to from Mekala and based on his input setup this cfg
+C:\lint\lnt\configSL\au-misra3.lnt
+C:\lint\lnt\configSL\co-xc16.lnt
+//C:\lint\options.lnt -si4 -sp4
+-i"C:\Program Files (x86)\Microchip\xc16\v1.33\include"

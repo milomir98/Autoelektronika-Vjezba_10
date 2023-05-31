@@ -1,0 +1,9 @@
+//  Microsoft Visual C++ 2005, -si4 -sl4 -sp8, lib-mfc.lnt lib-stl.lnt lib-w32.lnt lib-wnt.lnt
+//  Standard lint options
+
+
+co-msc80.lnt
+lib-mfc.lnt lib-stl.lnt lib-w32.lnt lib-wnt.lnt
+options.lnt  -si4 -sl4 -sp8
+-i"C:\Program Files (x86)\Microsoft Visual Studio 8\VC\include"
+

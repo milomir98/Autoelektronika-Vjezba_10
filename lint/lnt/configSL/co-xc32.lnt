@@ -1,0 +1,163 @@
+/* Date Stamp */ -d"_lint_co_xc32_lnt=co-xc32.lnt modified 22-Jul-2015"
+/* To document usage use: -message( "Using " _lint_co_xc32_lnt ) */
+
+//    co-xc32.lnt
+//    Compiler options for the Microchip MPLAB XC32 C Compiler for PIC32
+
+//    This file contains options to allow PC-lint to process source
+//    files for your compiler.  It is used as follows:
+//
+//    lint  co-xc32.lnt  source-file(s)
+
+-header(lint-cmac.h)   // preprocessor macro definitions. Use -E -dM together with your other compilation options 
+                       // to generate all preprocessor macro definitions
+                       // xc32-gcc -mprocessor=processor_name -E -dM empty.c (empty file)
+                       // Any options used in the compilation and that would potentially define certain macros
+                       // should be passed as well.
+
+include-path.lnt       // path to header files. Use -v option with xc32-gcc.exe to find the path to include files.
+                       // xc32-gcc -mprocessor=processor_name -v empty.c (empty file)
+                       // Use these paths as an argument to -i option.  
+
+// Common C Interface
+co-cci.lnt
+
+//    If you are using GCC on some other system you will need to change
+//    the following options:
+
+-cgnu     // Notifies PC-lint that gcc is being used.
+
+// Begin: System Dependent Options
+// -------------------------------
+
+-si4      // int's are typically 4 bytes
+-sp4      // ptr's are typically 4 bytes
+
+// -----------------------------
+// End: System Dependent Options
+
++fld      // support gcc's label designators
+
+            // while processing library headers
+-wlib(1)    // sets the warning level within library headers to 1
+            // (only library Error messages).  Comment out if you
+            // are actually linting library headers.  This
+            // option makes obsolete options of the form -elib(xxx) where
+            // xxx >= 400 which may be retained for historical reasons.
+
+-elib(15)   // redeclaration of symbol
+-elib(516)  // lots of redeclarations in Linux stdlib.h
+-elib(652)  // suppress message about #define of earlier declared symbols
+-elib(762)  // suppress message about multiple identical declarations and
+-elib(760)  // suppress message about multiple identical macro defs
+
+-elib(410)  // unusual size_t
+-elib(767)  // differently defined macro
+-elib(624)  // typedef symbol redeclared
+-elib(607)  // parameter substitution within string
+-elib(537)  // repeated include files
+-elib(123)  // size is both a variable and a macro with args
+-elib(19)   // suppress messages about useless declarations
+
+
+-emacro(734,putc)      // don't complain about items being too large.
+-emacro((???),va_arg)  // the va_arg() macro can yield 415, 416, 661, 662
+                       // 796 and 797 (out-of-bounds errors).
+-emacro(413,offsetof)  // use of NULL pointer creates a stir
+-emacro(545,offsetof)  // addressing an array member is OK
+
+-esym(528,__huge_val,__nan,__qnan,__qnanf,__snan,__snanf)
+-esym(528,__gnu_malloc,__gnu_calloc)         // We don't care if we don't reference some GNU funcs
+
+//  The following options were found necessary when processing
+//  the Unix headers within /usr/include
+
++fdi             // Use the directory of the including file
+
++ppw(ident)      // Tolerate #ident
++ppw(warning)    // Tolerate #warning
++rw(__inline)    // enable the (non-standard) __inline keyword
++rw(__inline__)  // enable the (non-standard) __inline__ keyword
++rw(inline)
+
++linebuf         // double the line buffer size 
+
+//  The following functions exhibit variable return modes.
+//  That is, they may equally-usefully be called for a value
+//  as called just for their effects.  Accordingly we inhibit
+//  Warning 534 for these functions.
+//  Feel free to add to or subtract from this list.
+
+-esym(534,close,creat,fclose,fprintf,fputc)
+-esym(534,fputs,fscanf,fseek,fwrite,lseek,memcpy,memmove,memset)
+-esym(534,printf,puts,scanf,sprintf,sscanf,strcat,strcpy)
+-esym(534,strncat,strncpy,unlink,write)
+
+// For non-ANSI compilers we suppress messages 515 and 516
+// for functions known to have variable argument lists.
+// For ANSI compilers, header files should take care of this.
+
+-esym(515,fprintf,printf,sprintf,fscanf,scanf,sscanf)
+-esym(516,fprintf,printf,sprintf,fscanf,scanf,sscanf)
+
+// The following options are required by most compilers to
+// noiselessly process iostream.h
+
+-elib(1717) // empty prototypes
+-elib(522)  // function return value ignored
+-elib(1053) // prototypes cannot be distinguished
+-elib(1721) // unusual operator =() declaration
+-elib(1720) // assignment op has non-const parameter
+-elib(655)  // bitwise operator combining compatible enum's
+-elib(641)  // converting enum's to int
+
+-elib(747)  // significant prototype coercion
+-elib(740)  // unusual pointer casts
+-elib(1029) // default argument repeated -- can't dist. char, signed char
+
+-elib(763)  // redundant declaration
+
+// What follows here is a collection of options we have found
+// to be needed to support Version 3 of GCC.  The need for these
+// options actually predates Version 3 and are of the 2.9... time frame
+
+-e93         // allow newlines within quoted string arguments to macros
+-e146        // XC32 supports binary constants
+
++rw(__extension__)
+-d__builtin_va_list=void*           // used by stdarg.h
+-d__builtin_stdarg_start()=_to_semi // ditto
+-d__builtin_va_end()=_to_semi       // ditto
++rw(_to_semi)                       // needed for the two macros above.
+-d__STDC_VERSION__=199901L          // required by C99
+-d__FUNCTION__="somefunction"
+-d__PRETTY_FUNCTION__="somefunction"
++fwc                    // wchar_t is builtin
+-d_WCHAR_T              // tell the header files as much
+-d__signed=
+-elib(148)              // Some of the libraries are redefining member functions
+-elib(1073)             // reverse_iterator<> is being invoked with
+                        // an insufficient number of parameters.
++rw(__typeof__)         // activate __typeof__ keyword
+-d__typeof=__typeof__   // an alternative to using __typeof__
++rw(typeof)
++rw( __volatile__ )     // unusual reserved word ignored.
++rw( __volatile )       // unusual reserved word ignored.
++rw( _to_brackets )                     // a pair of options to ignore an elaborated
++d__asm__=_to_brackets                  // assembly language escape.
++d__attribute__=_to_brackets 
+-rw(__except)                           // This MS reserved word is used as an identifier
++rw( __complex__, __real__, __imag__ )  // reserved words that can be ignored.
++d__builtin_strchr=(char*)              // permits the inline definition ...
++d__builtin_strpbrk=(char*)             // of these functions to be linted ...
++d__builtin_strrchr=(char*)             // without drawing a complaint
++d__builtin_strstr=(char*)              // about the use of a non-standard name
+
+-esym( 718, __builtin_* )   // The compiler does not need these ...
+-esym( 746, __builtin_* )   // declared and it knows their prototypes.
+
+--uconst                    // keep const from being defined away
++rw(__restrict)             // ignore this keyword.
+
+-e46                        // bit fields of types other that int and unsigned are allowed
++macros	                    // increases the size of macro storage.

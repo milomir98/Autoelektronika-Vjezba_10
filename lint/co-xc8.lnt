@@ -1,0 +1,156 @@
+/* Date Stamp */ -d"_lint_co_xc8_lnt=co-xc8.lnt modified 22-Jul-2015"
+/* To document usage use: -message( "Using " _lint_co_xc8_lnt ) */
+
+//    co-xc8.lnt
+//    Compiler Options for the Microchip MPLAB XC8 C Compiler
+
+//    This file contains options to allow PC-lint to process source
+//    files for your compiler.  It is used as follows:
+//
+//    lint  co-xc8.lnt  source-file(s)
+//
+
+// Before you start using this file, please follow the directions to perform these simple steps:
+// 1- include the path(s) to your header files
+//      - run xc8 to compile empty file empty.c with -v option and copy any -I argument 
+//        from the output to include-path.lnt (in the same directory where co-xc8.lnt exists).
+//        don't forget to use the -i lint option. ex: -i"include-path".
+//        Note that any other include directories should be added explicitly.  
+
+// 2- Now include the preprocessor macro definitions specific to the chip you are using:
+//       - From the output you get in step one, copy all arguments starting with -D to "lint-cmac.h" 
+//         in the same directory as co-xc8.lnt.
+//       - Edit the file to have the form:
+//              #define macro_name   value           // each definition on a separate line
+
+-header(lint-cmac.h)          // preprocessor macro definitions
+include-path.lnt              // path to header files
+
+// Common C Interface
+// co-cci.lnt                 // Uncomment if you are using CCI
+
+
+// predefined macros
+
+-d__DATE__
+-d__LINE__
+-d__FILE__
+-d_ERRATA_TYPES
+
+
+          // while processing compiler (library) header files ...
+-wlib(1)  // sets the warning level within library headers to 1
+          // (no warnings, just syntax errors).  Comment out if you
+          // are actually linting library headers.  This
+          // option makes obsolete options of the form -elib(xxx) where
+          // xxx >= 400 which may be retained for historical reasons.
+          // You can also use -elib( # [, #] ... ) to inhibit error message # within library headers
+          //     or in regions of code denoted as being library.
+          // Use -libh() to remove a specific .h file from being processed as library,
+          //     such as when you want usual checking to apply to a compiler header
+		
++fdi      // Use the directory of the including file
+	
+
+// XC8 keywords.
+
++rw(rom)
++rw(ram)
++rw(code)
++rw(near)
++rw(far)
++rw(interrupt)
++rw(__interrupt)
++rw(persistent)
++rw(bank0)
++rw(bank1)
++rw(bank2)
++rw(bank3)
++rw(eeprom)
++rw(low_priority)
++rw(high_priority)
++rw(inline)
++rw(compiled)
++rw(nonreentrant)
++rw(software)
++rw(reentrant)
++rw(__compiled)
++rw(__nonreentrant)
++rw(__software)
++rw(__reentrant)
++rw(fiq)
++rw(irq)
++rw(__no_init)
++rw(__inline)
+
+
+// XC8 uses @ to specify object location (not standard C)
+
+-d@=_to_semi
++rw(_to_semi) 
+
+-e430       // XC8 uses @ to specify object location (not standard C)
+-e716       // allow while(1)
+-e146       // XC8 supports binary constants
+
++fdr  	    // deduce return type of a function
++fem        // allow Early Modifiers
++fan        // allow anonymous unions
++fas        // allow anonymous structures
+-si2        // size of int 2 bytes
+-sl4        // size of long 4 bytes
+//-sp2      // size of pointers 2 bytes
+-e788       // enum not used
+
+-e46        // unsigned char  bit field types are allowed
+-e109 	    // short long types are valid
+-e146 	    // we support binary constants
+-e617       // processed as both a module and include file
+
+//-e534     // uncomment to suppress all msg 534 "ignoring return value" warnings
+
+//  The following functions exhibit variable return modes.
+//  That is, they may equally-usefully be called for a value
+//  as called just for their effects.  Accordingly we inhibit
+//  Warning 534 for these functions.
+//  Feel free to add to or subtract from this list.
+
+-esym(534,close,creat,fclose,fprintf,fputc)
+-esym(534,fputs,fscanf,fseek,fwrite,lseek,memcpy,memmove,memset)
+-esym(534,printf,puts,scanf,sprintf,sscanf,strcat,strcpy)
+-esym(534,strncat,strncpy,unlink,write)
+
+// For non-ANSI compilers we suppress messages 515 and 516
+// for functions known to have variable argument lists.
+// For ANSI compilers, header files should take care of this.
+
+-esym(515,fprintf,printf,sprintf,fscanf,scanf,sscanf)
+-esym(516,fprintf,printf,sprintf,fscanf,scanf,sscanf)
+
+-elib(125)              // static keywords in prototype arguments
+
+
+-d__attribute__()=      // ignore this keyword and following 
+-d__interrupt()=
+
++rw(__bit)
++rw(bit)
++rw(_asm, _endasm)
++rw(__asm)
+
++ppw(advisory)
++ppw(info)
++ppw(warning)
++ppw(assert)
+
+++fln                   // allow # as abbreviation for #line
+
+
++ppw(asm, endasm)              // Enable #asm assembly code #endasm (inline assembly)
+//-dasm()=/*lint -elib{19}*/   // inline assembly using asm()
+
+// allow asm(.....);
++rw(asm)
++rw(_to_semi)
+-dasm=_to_semi
+ 

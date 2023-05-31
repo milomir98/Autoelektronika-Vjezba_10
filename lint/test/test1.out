@@ -1,0 +1,30 @@
+
+--- Module:   module1.cpp (C++)
+
+    --- Wrap-up for Module: module1.cpp
+
+test1.lnt  3  Info 753: local class 'X' (line 7, file module1.cpp) not
+    referenced
+module1.cpp  7  Info 830: Location cited in prior message
+
+--- Module:   module2.c (C)
+                        _
+    {
+module2.c  3  Error 18: Symbol 'alpha(int)' redeclared (Arg. no. 1:
+    signed/unsigned,precision) conflicts with line 4, file module1.cpp
+module1.cpp  4  Info 830: Location cited in prior message
+                        _
+    {
+module2.c  3  Warning 516: Symbol 'alpha(unsigned long)' has arg. type conflict
+    (arg. no. 1 -- unsigned long vs. int) with line 4, file module1.cpp
+module1.cpp  4  Info 830: Location cited in prior message
+                             _
+    return (unsigned) l >> 16;
+module2.c  4  Warning 572: Excessive shift value (precision 16 shifted right by
+    16)
+
+--- Global Wrap-up
+
+Info 1714: Member function 'X::f(int)' (line 9, file module1.cpp) not
+    referenced
+module1.cpp  9  Info 830: Location cited in prior message

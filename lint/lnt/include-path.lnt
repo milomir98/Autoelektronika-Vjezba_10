@@ -1,0 +1,3 @@
+-i"c:\program files (x86)\microchip\xc16\v1.33\bin\bin\../..\include\lega-c"
+-i"c:\program files (x86)\microchip\xc16\v1.33\bin\bin\../..\support\generic\h"
+-i"c:\program files (x86)\microchip\xc16\v1.33\bin\bin\../..\support\dsPIC30F\h"

@@ -1,0 +1,19 @@
+// lib-stingray-grid.lnt
+// .lnt file for the Rogue Wave Stingray Objective Grid
+// Contributed by:
+//      Michael S. Scherotter
+//      Tartus Development, Inc.
+
+-esym(1735,*::SelectRange)
+-esym(1746,*::SortRows)
+
+
+-esym(1932,CGXCheckBox)
+-esym(1932,CGXComboBox)
+-esym(1932,CGXControl)
+-esym(1932,CGXDaoRecordView)
+-esym(1932,CGXEditControl)
+-esym(1932,CGXGridView)
+-esym(1932,CGXGridWnd)
+-esym(1932,CGXPluginComponent)
+-esym(1932,CGXStatic)

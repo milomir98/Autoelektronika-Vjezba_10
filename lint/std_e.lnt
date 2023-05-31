@@ -1,0 +1,8 @@
+//  Microsoft Visual C++ 2008, -si4 -sl4 -sp8, lib-w32.lnt
+//  Standard lint options
+
+
+co-msc90.lnt
+lib-w32.lnt
+options.lnt  -si4 -sl4 -sp8
+

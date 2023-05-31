@@ -1,0 +1,22 @@
+//  Microsoft Visual C++ 2005, -si4 -sl4 -sp8, lib-mfc.lnt lib-stl.lnt lib-w32.lnt lib-wnt.lnt
+//  Standard lint options
+
+
+co-msc110.lnt
+au-misra3.lnt //lib-mfc.lnt lib-stl.lnt lib-w32.lnt lib-wnt.lnt
+options.lnt -si4 -sl4 -sp8
+
+
+//-w3
+//-vf
+
+
+-i"C:\Program Files (x86)\Microsoft Visual Studio\include"
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\"
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\shared\"
+
+// Ovde navesti foldere sa header fajlovima projekata
+
+-i"C:\Users\EliteBook\Desktop\Fakultet\Autolektronika\Vjezbe 2023\Vjezba 9\Vjezba9 program\Starter"
+-i"C:\Users\EliteBook\Desktop\Fakultet\Autolektronika\Vjezbe 2023\Vjezba 9\Vjezba9 program\Starter\FreeRTOS\include"
+-i"C:\Users\EliteBook\Desktop\Fakultet\Autolektronika\Vjezbe 2023\Vjezba 9\Vjezba9 program\Starter\FreeRTOS\portable\MSVC"

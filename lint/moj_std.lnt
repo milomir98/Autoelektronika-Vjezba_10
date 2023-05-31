@@ -1,0 +1,25 @@
+//  Microsoft Visual C++ 2005, -si4 -sl4 -sp8, lib-mfc.lnt lib-stl.lnt lib-w32.lnt lib-wnt.lnt
+//  Standard lint options
+
+
+co-msc110.lnt
+lib-mfc.lnt lib-stl.lnt lib-w32.lnt lib-wnt.lnt au-misra3.lnt
+options.lnt -si4 -sl4 -sp8
+
+
+-i"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include"
+-i"C:\Program Files (x86)\Windows Kits\10\Include"
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um"
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt"
+-i"C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared"
+-i"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include"
+
+// Ovde navesti foldere sa header fajlovima projekata
+
+-i"C:\Users\Milos Arbanas\source\repos\misra_testing\misra_testing\"
+
+
+//-i"C:\Users\Milos Arbanas\Documents\GitHub\autoelektronika-primer1\osnovni-fajlovi-za-projekat\FreeRTOS\include"
+//-i"C:\Users\Milos Arbanas\Documents\GitHub\autoelektronika-primer1\osnovni-fajlovi-za-projekat"
+//-i"C:\Users\Milos Arbanas\Documents\GitHub\autoelektronika-primer1\osnovni-fajlovi-za-projekat\portable\MSVC"
+

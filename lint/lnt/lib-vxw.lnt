@@ -1,0 +1,7 @@
+
+// lib-vxw.lnt
+// .lnt file for the VX Works Library
+// This is probably not complete; consider it a work in progress
+
+-dCPU=PPC603            // identify the CPU as a variant of the ...
+-dCPU_FAMILY=PPC        // Power PC family

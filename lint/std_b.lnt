@@ -1,0 +1,9 @@
+//  Microsoft C and Visual C++ 4.x, -si4 -sp4, lib-mfc.lnt
+//  Standard lint options
+
+
+co-msc40.lnt
+lib-mfc.lnt
+options.lnt  -si4 -sp4
+-i"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include"
+

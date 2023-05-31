@@ -1,0 +1,4 @@
+// this is an example of mixing C with C++
+-si2  // assume integers are 2 bytes
+module1.cpp
+module2.c
